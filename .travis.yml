@@ -1,0 +1,29 @@
+sudo: false
+
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.1.7
+  - 2.2.3
+
+script: bundle exec rake travis
+
+install:
+  - gem update --system
+  - gem install bundler
+  - bundle install
+  - rake compile
+
+script:
+  - ruby -v
+  - gem -v
+  - rake
